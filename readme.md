@@ -10,8 +10,6 @@ This repository contains my implementation of a neural network for classifying h
 4. [Usage](#usage)
 5. [Model Overview](#model-overview)
 6. [Results](#results)
-7. [Contributions](#contributions)
-8. [License](#license)
 
 ## Project Overview
 
@@ -42,7 +40,7 @@ To run this project locally, you'll need Python and a few essential libraries:
 - `numpy`
 - `matplotlib` (optional, for visualizing results)
 
-### Installation & Usage
+### Installation
 1. Clone the repository:
     ```bash
     git clone https://github.com/wojciechtrapkowski/digits_classifier
@@ -54,7 +52,9 @@ To run this project locally, you'll need Python and a few essential libraries:
     pip install numpy matplotlib
     ```
 
-3. Run program:
+### Usage
+
+1. Run program:
     ```python
     python3 main.py
     ```
