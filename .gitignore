@@ -233,3 +233,4 @@ pyrightconfig.json
 src/__pycache__
 *.pyc
 network.py
+saved/*

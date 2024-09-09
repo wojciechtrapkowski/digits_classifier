@@ -20,6 +20,7 @@ The goal of this project is to build a simple neural network from scratch, capab
 - Backpropagation for training.
 - The network is trained to classify digits from the MNIST dataset.
 - No external deep learning libraries (like TensorFlow or PyTorch) were used — the implementation was done from scratch using `NumPy`.
+- Option to save & load model
 
 ## Learning Resources
 

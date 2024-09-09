@@ -3,15 +3,28 @@ import mnist_loader as ml
 
 
 class NeuralNetwork:
-    def __init__(self, sizes):
+    def __init__(
+        self, sizes, training_data, test_data, num_epochs, use_saved_model=False
+    ):
         self.num_layers = len(sizes)
         self.sizes = sizes
+
+        if use_saved_model:
+            # check if model is saved
+            try:
+                self.weights = np.load("saved/weights.npy", allow_pickle=True)
+                self.biases = np.load("saved/biases.npy", allow_pickle=True)
+                print("Model loaded")
+                return
+            except FileNotFoundError:
+                print("Model not found, initializing new model")
 
         # skip first layer, as it has no weights and biases
         self.biases = [np.random.randn(y, 1) for y in sizes[1:]]
         # assume that all neurons from layer before, are connected to all neurons in the next layer
         # skip last layer, because it doesn't have any output connections
         self.weights = [np.random.randn(y, x) for x, y in zip(sizes[:-1], sizes[1:])]
+        self.train(training_data, test_data, num_epochs)
 
     def train(
         self,
@@ -35,6 +48,11 @@ class NeuralNetwork:
             print(f"Epoch {epoch} complete")
             result = round(self.test(test_data) / len(test_data) * 100, 2)
             print(f"Accuracy: {result}%")
+
+        # Save model
+        np.save("saved/weights.npy", np.array(self.weights, dtype=object))
+        np.save("saved/biases.npy", np.array(self.biases, dtype=object))
+        print("Saved model!")
 
     def test(self, test_data):
         return self.evaluate(test_data)
